@@ -1,0 +1,155 @@
+@model ShowPostViewModel
+
+@{
+    Layout = "_HomeLayout";
+    ViewData["Title"] = Model.Post.Title;
+}
+
+<nav id="navbar">
+    <a asp-controller="Home" asp-action="Index" class="navbar__logo">
+        <img src="~/img/movieblog.png" alt="Navbar logo">
+        <span>MovieBlog</span>
+    </a>
+    <div class="navbar__menu">
+        <ul>
+            <li>
+                <a asp-controller="Home" asp-action="Index">Новости</a>
+            </li>
+            <li>
+                <a>
+                    Жанры
+                    <svg class="navbar__menu-arrow" xmlns="http://www.w3.org/2000/svg"
+                         width="451.847px" height="451.847px" viewBox="0 0 451.847 451.847"
+                         xml:space="preserve">
+                        <g>
+                            <path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751
+                                            c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0
+                                            c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/>
+                        </g>
+                    </svg>
+                </a>
+                <ul class="dropdown">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <li>
+                            <a asp-controller="Home" asp-action="Index" asp-route-category="@category.Name">@category.Name</a>
+                        </li>
+                    }
+                </ul>
+            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li>
+                    <a asp-controller="Account" asp-action="Profile">
+                        Личный кабинет
+                        <svg class="navbar__menu-arrow" xmlns="http://www.w3.org/2000/svg"
+                             width="451.847px" height="451.847px" viewBox="0 0 451.847 451.847"
+                             xml:space="preserve">
+                            <g>
+                                <path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751
+                                                                c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0
+                                                                c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/>
+                            </g>
+                        </svg>
+                    </a>
+                    <ul class="dropdown">
+                        <li>
+                            <a asp-controller="Account" asp-action="Profile">Мой профиль</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Account" asp-action="Favorites">Избранные новости</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li>
+                                    <a asp-controller="Role" asp-action="GetUserList">Все пользователи</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Role" asp-action="Index">Все роли</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Post" asp-action="GetPostList">Все новости</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Post" asp-action="AddCategory">Все жанры</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="navbar__buttons">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Account" asp-action="Register" class="navbar__button register">Зарегистрироваться</a>
+            <a asp-controller="Account" asp-action="Login" class="navbar__button login">Войти</a>
+        }
+        else
+        {
+            <form asp-controller="Account" asp-action="Logout" method="post">
+                <button type="submit" class="navbar__button logout">Выйти</button>
+            </form>
+        }
+    </div>
+</nav>
+<section class="container banner" style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('@Url.Content(Model.Post.Image.Path)') no-repeat center top / cover">
+    <div class="banner__content">
+        <h1 class="banner__content-title">@Model.Post.Title</h1>
+        <span class="banner__content-category">@Model.Post.Category.Name</span>
+        <span class="banner__content-date">@Model.Post.Created.ToString("MM/dd/yyyy HH:mm")</span>
+    </div>
+</section>
+<section class="container post">
+    <div class="post__content">
+        @Html.Raw(Model.Post.Content)
+    </div>
+    <hr>
+    <div class="post__comments">
+        <h1>Комментарии</h1>
+        @foreach (var comment in Model.PostComments)
+        {
+            <div class="post__comments-wrapper">
+                <img class="post__comments-user-icon" src="@comment.User.Image.Path" alt="User image">
+                <div class="post__comments-content">
+                    <div class="post__comments-details">
+                        <span class="post__comments-username">@comment.User.UserName</span>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Admin"))
+                            {
+                                <form asp-controller="Post" asp-action="RemoveComment" asp-route-id="@comment.Id" class="post__comments-delete">
+                                    <input name="postId" value="@Model.Post.Id" type="hidden">
+                                    <button type="submit"></button>
+                                </form>
+                            }
+                            else if (comment.User.UserName == User.Identity.Name)
+                            {
+                                <form asp-controller="Post" asp-action="RemoveComment" asp-route-id="@comment.Id" class="post__comments-delete">
+                                    <input name="postId" value="@Model.Post.Id" type="hidden">
+                                    <button type="submit"></button>
+                                </form>
+                            }
+                        }
+                    </div>
+                    <p>
+                        @comment.Content
+                    </p>
+                    <span class="post__comments-date">@comment.CreatedAt.ToString("MM/dd/yyyy HH:mm")</span>
+                </div>
+            </div>
+        }
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form class="post__comments-form" method="post" asp-action="AddComment">
+                <img class="post__comments-user-icon" src="@Model.User.Image.Path" alt="User image">
+                <input name="postId" value="@Model.Post.Id" type="hidden">
+                <textarea asp-for="Comment.Content" class="post__comments-input" placeholder="Оставить комментарий"></textarea>
+                <button type="submit"></button>
+            </form>
+        }
+    </div>
+</section>

@@ -1,0 +1,172 @@
+﻿@model HomeIndexViewModel
+
+@{
+    Layout = "_HomeLayout";
+    ViewData["Title"] = "Новости";
+}
+
+<nav id="navbar">
+    <a asp-controller="Home" asp-action="Index" class="navbar__logo">
+        <img src="~/img/movieblog.png" alt="Navbar logo">
+        <span>MovieBlog</span>
+    </a>
+    <div class="navbar__menu">
+        <ul>
+            <li>
+                <a asp-controller="Home" asp-action="Index">Новости</a>
+            </li>
+            <li>
+                <a>
+                    Жанры
+                    <svg class="navbar__menu-arrow" xmlns="http://www.w3.org/2000/svg"
+                         width="451.847px" height="451.847px" viewBox="0 0 451.847 451.847"
+                         xml:space="preserve">
+                        <g>
+                            <path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751
+                                            c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0
+                                            c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/>
+                        </g>
+                    </svg>
+                </a>
+                <ul class="dropdown">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <li>
+                            <a asp-controller="Home" asp-action="Index" asp-route-category="@category.Name">@category.Name</a>
+                        </li>
+                    }
+                </ul>
+            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li>
+                    <a asp-controller="Account" asp-action="Profile">
+                        Личный кабинет
+                        <svg class="navbar__menu-arrow" xmlns="http://www.w3.org/2000/svg"
+                             width="451.847px" height="451.847px" viewBox="0 0 451.847 451.847"
+                             xml:space="preserve">
+                            <g>
+                                <path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751
+                                                                c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0
+                                                                c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"/>
+                            </g>
+                        </svg>
+                    </a>
+                    <ul class="dropdown">
+                        <li>
+                            <a asp-controller="Account" asp-action="Profile">Мой профиль</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Account" asp-action="Favorites">Избранные новости</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li>
+                                    <a asp-controller="Role" asp-action="GetUserList">Все пользователи</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Role" asp-action="Index">Все роли</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Post" asp-action="GetPostList">Все новости</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Post" asp-action="AddCategory">Все жанры</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="navbar__buttons">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Account" asp-action="Register" class="navbar__button register">Зарегистрироваться</a>
+            <a asp-controller="Account" asp-action="Login" class="navbar__button login">Войти</a>
+        }
+        else
+        {
+            <form asp-controller="Account" asp-action="Logout" method="post">
+                <button type="submit" class="navbar__button logout">Выйти</button>
+            </form>
+        }
+    </div>
+</nav>
+<section class="container functions">
+    <div class="functions__sorting">
+        <ul>
+            <li>
+                <span>Сортировать по:</span>
+            </li>
+            <li>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParam"]">Дате</a>
+            </li>
+            <li>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TitleSortParam"]">Названию</a>
+            </li>
+        </ul>
+    </div>
+    <svg class="functions__search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+    </svg>
+</section>
+<section class="search__window">
+    <form asp-action="Index" method="get" class="search__window-form">
+        <input class="search__window-input" type="text" name="searchString" value="@ViewData["CurrentFilter"]">
+        <svg class="functions__search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+        </svg>
+        <button class="search__window-button" type="submit">Найти</button>
+        <svg class="search__window-close" height="329pt" viewBox="0 0 329.26933 329" width="329pt" xmlns="http://www.w3.org/2000/svg">
+            <path d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"/>
+        </svg>
+    </form>
+</section>
+<section class="container banner">
+</section>
+<section class="container news">
+    <div class="news__wrapper">
+        @foreach (var post in Model.AllPosts)
+        {
+            <div class="news__item" style="background: url('@Url.Content(post.Image.Path)') no-repeat center top / cover">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @if (Model.UserPosts.Contains(post))
+                    {
+                        <form method="post" asp-controller="Post" asp-action="RemoveFromFavorites" asp-route-id="@post.Id">
+                            <button class="fav-icon active"></button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form method="post" asp-controller="Post" asp-action="AddToFavorite" asp-route-id="@post.Id">
+                            <button class="fav-icon"></button>
+                        </form>
+                    }
+                }
+                <a asp-controller="Post" asp-action="Show" asp-route-id="@post.Id" class="news__item-details">Подробнее</a>
+                <div class="news__item-header">
+                    <span class="news__item-category">@post.Category.Name</span>
+                    <p class="news__item-title">@post.Title</p>
+                </div>
+            </div>
+        }
+    </div>
+    @if (ViewBag.PostCount > 6 && Model.AllPosts.Count >= 6)
+    {
+        if (Convert.ToBoolean(ViewData["ShowParam"]))
+        {
+            <a asp-controller="Home" asp-action="Index" asp-route-showAll="@ViewData["ShowParam"]" class="news__all">Показать все новости</a>
+        }
+        else
+        {
+            <a asp-controller="Home" asp-action="Index" asp-route-showAll="@ViewData["ShowParam"]" class="news__all">Скрыть</a>
+        }
+    }
+</section>

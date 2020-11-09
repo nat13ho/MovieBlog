@@ -1,0 +1,63 @@
+@model EditPostViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/styles.css">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/36kkkhd93v5fbjle570kn4xedtutldzhous9nkjk0117rw5h/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector:'textarea',
+            toolbar: 'image',
+            plugins: 'autoresize image imagetools',
+            // autoresize_overflow_padding: 20
+        });
+    </script>
+    <title>Редактирование новости</title>
+</head>
+<body>
+<section class="container post__create">
+    <h1>Добавление новости</h1>
+    <form method="post" asp-action="Edit" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="custom-form-group">
+            <label asp-for="Title">Заголовок</label>
+            <input asp-for="Title" type="text">
+        </div>
+        <div class="custom-form-group">
+            <label asp-for="Content">Контент</label>
+            <textarea asp-for="Content"></textarea>
+        </div>
+        <div class="custom-form-group">
+            <span>Изображение</span>
+            <label asp-for="Image" class="file__label"><img src="~/img/image.svg" alt="Post image"></label>
+            <input asp-for="Image" type="file" accept="image/jpeg,image/png,image/gif">
+        </div>
+        <div class="custom-form-group">
+            <span>Жанр</span>
+            <div class="form-grid">
+                @foreach (var category in Model.AllCategories)
+                {
+                    <div class="radio-group">
+                        <label class="radio__label" for="@category.Id">@category.Name</label>
+                        <input id="@category.Id" type="radio" name="category" value="@category.Name"
+                               @(Model.Category == category.Name ? "checked=\"checked\"" : "")/>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="custom-form-group">
+            <button type="submit">Сохранить</button>
+        </div>
+    </form>
+</section>
+</body>
+</html>

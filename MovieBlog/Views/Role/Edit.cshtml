@@ -1,0 +1,43 @@
+@model ChangeRoleViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="short icon" type="image/png" href="~/img/movieblog.png">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <title>Изменение ролей</title>
+</head>
+<body>
+<section class="container roles__control-edit">
+    <div class="register__window-logo">
+        <img src="~/img/movieblog.png" alt="MovieBlog icon">
+        <span>MovieBlog</span>
+    </div>
+    <div class="roles__control-wrapper">
+        <h1>Изменение ролей для пользователя @User.Identity.Name</h1>
+        <form method="post">
+            <input type="hidden" name="userId" value="@Model.UserId"/>
+            <div class="custom-form-group-checkbox">
+                @foreach (var role in Model.AllRoles)
+                {
+                    <div class="custom-form-checkbox">
+                        <label for="@role.Id">@role.Name</label>
+                        <input id="@role.Id" type="checkbox" name="roles" value="@role.Name"
+                               @(Model.UserRoles.Contains(role.Name) ? "checked=\"checked\"" : "")/>
+                    </div>
+                }
+            </div>
+            <button type="submit">Сохранить</button>
+            <a asp-controller="Role" asp-action="GetUserList">Вернуться</a>
+        </form>
+    </div>
+</section>
+</body>
+</html>
