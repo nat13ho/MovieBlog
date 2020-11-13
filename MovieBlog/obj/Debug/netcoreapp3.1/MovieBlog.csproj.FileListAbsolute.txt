@@ -409,3 +409,5 @@
 /Users/natho/Desktop/Programming/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/Views/Role/Index.cshtml.g.cs
 /Users/natho/Desktop/Programming/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/Views/Account/Edit.cshtml.g.cs
 /Users/natho/Desktop/Programming/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/Views/Account/RegisterCofirmation.cshtml.g.cs
+/Users/natho/Desktop/Programming/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/Views/Shared/_Navbar.cshtml.g.cs
+/Users/natho/Desktop/Programming/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/Views/Shared/_Sidebar.cshtml.g.cs

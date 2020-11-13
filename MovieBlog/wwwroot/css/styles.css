@@ -420,6 +420,7 @@ body {
 }
 
 .news__all {
+    font-size: 1.2vw;
     margin-top: 2vw;
     color: #6d6d6d;
     transition: all 0.15s ease;
@@ -471,6 +472,10 @@ body {
     justify-content: space-between;
     width: 100%;
     color: #788a94;
+}
+
+.footer__social-wrapper span {
+    font-size: 1.2vw;
 }
 
 .footer__social-content {
