@@ -31,14 +31,14 @@
                         {
                             if (User.IsInRole("Admin"))
                             {
-                                <form asp-controller="Post" asp-action="RemoveComment" asp-route-id="@comment.Id" class="post__comments-delete">
+                                <form asp-controller="Comment" asp-action="Remove" asp-route-id="@comment.Id" class="post__comments-delete">
                                     <input name="postId" value="@Model.Post.Id" type="hidden">
                                     <button type="submit"></button>
                                 </form>
                             }
                             else if (comment.User.UserName == User.Identity.Name)
                             {
-                                <form asp-controller="Post" asp-action="RemoveComment" asp-route-id="@comment.Id" class="post__comments-delete">
+                                <form asp-controller="Comment" asp-action="Remove" asp-route-id="@comment.Id" class="post__comments-delete">
                                     <input name="postId" value="@Model.Post.Id" type="hidden">
                                     <button type="submit"></button>
                                 </form>
@@ -54,7 +54,7 @@
         }
         @if (User.Identity.IsAuthenticated)
         {
-            <form class="post__comments-form" method="post" asp-action="AddComment">
+            <form class="post__comments-form" method="post" asp-controller="Comment" asp-action="Add">
                 <img class="post__comments-user-icon" src="@Model.User.Image.Path" alt="User image">
                 <input name="postId" value="@Model.Post.Id" type="hidden">
                 <textarea asp-for="Comment.Content" class="post__comments-input" placeholder="Оставить комментарий"></textarea>

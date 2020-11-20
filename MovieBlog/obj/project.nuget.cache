@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5cSbDtvcCzzyNSTpd7VOBHQXWnZydg4QXtm+/8EM4l+gcuqfRb5YqzLDQV090dxlK0LXmsXgRPK9K+nJ6YuwRw==",
+  "dgSpecHash": "0bB8kOWUFH7XzZbZCM/9jdY24WyTbKkc1mTdPMEKGP/4UEWp54IBuuT0f2cgUZOiNBYFfaJCaoiSqBr0cYvNVQ==",
   "success": true,
-  "projectFilePath": "/Users/natho/Desktop/Programming/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj",
+  "projectFilePath": "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj",
   "expectedPackageFiles": [
     "/Users/natho/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/natho/.nuget/packages/mailkit/2.9.0/mailkit.2.9.0.nupkg.sha512",
@@ -135,6 +135,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
+      "filePath": "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj",
       "message": "Microsoft.Extensions.Primitives 2.0.0-preview1-final depends on System.Runtime.CompilerServices.Unsafe (>= 4.4.0-preview1-25219-04) but System.Runtime.CompilerServices.Unsafe 4.4.0-preview1-25219-04 was not found. An approximate best match of System.Runtime.CompilerServices.Unsafe 4.4.0-preview1-25305-02 was resolved.",
       "libraryId": "System.Runtime.CompilerServices.Unsafe",
       "targetGraphs": [

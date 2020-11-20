@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/natho/Desktop/Programming/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj": {}
+    "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj": {}
   },
   "projects": {
-    "/Users/natho/Desktop/Programming/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj": {
+    "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/natho/Desktop/Programming/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj",
+        "projectUniqueName": "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj",
         "projectName": "MovieBlog",
-        "projectPath": "/Users/natho/Desktop/Programming/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj",
+        "projectPath": "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj",
         "packagesPath": "/Users/natho/.nuget/packages/",
-        "outputPath": "/Users/natho/Desktop/Programming/Самоподготовка/Web/MovieBlog/MovieBlog/obj/",
+        "outputPath": "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

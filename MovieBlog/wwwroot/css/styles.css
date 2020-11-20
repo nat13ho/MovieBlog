@@ -45,6 +45,15 @@ body {
     transition: 0.3s ease-in-out;
 }
 
+.navbar__burger {
+    display: none;
+}
+
+input[type="password"] {
+    font: small-caption;
+    font-size: 1.3vw;
+}
+
 .container {
     width: 100%;
     padding: 0 8vw;
@@ -52,6 +61,11 @@ body {
     align-items: center;
     justify-content: center;
     transition: 0.3s ease-in-out;
+}
+
+input[type="password"] {
+    font: small-caption;
+    font-size: 1.3vw;
 }
 
 #navbar a {
@@ -214,7 +228,7 @@ body {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     flex-direction: column;
     position: fixed;
     padding: 2vw 20vw;
@@ -517,8 +531,7 @@ body {
 .banner__content-date, .banner__content-category {
     font-size: 1.3vw;
     color: orangered;
-    /*text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);*/
-    text-shadow: none;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .banner__content-category {
@@ -538,6 +551,12 @@ body {
     height: .1vw;
     background-color: #6d6d6d;
     border: none;
+}
+
+.post__content img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .post__comments {
@@ -666,7 +685,7 @@ body {
 .change__password__window,
 .forgot__password__window,
 .reset__password__window {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -868,7 +887,7 @@ body {
     font-size: 1.5vw;
     z-index: 998;
     position: fixed;
-    height: 100vh;
+    min-height: 100vh;
     width: 20vw;
     background-color: #1d2b36;
     padding: 7vw 2vw;
@@ -1049,8 +1068,7 @@ body {
 }
 
 .users__control-table tr > td,
-.roles__control-table tr > td,
-.posts__control-table tr > td {
+.roles__control-table tr > td {
     border-bottom: solid .1vw orangered;
 }
 
@@ -1141,7 +1159,7 @@ body {
 }
 
 .roles__control-edit {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1291,10 +1309,9 @@ body {
 }
 
 .container.post__create {
-    /*height: 100vh;*/
+    min-height: 100vh;
     padding: 4vw 8vw;
     flex-direction: column;
-
 }
 
 .container.post__create h1 {
@@ -1327,6 +1344,10 @@ body {
     border: solid .1vw deepskyblue;
     padding: 0 2vw;
     font-size: 1.5vw;
+}
+
+.custom-form-group input:focus {
+    outline: none;
 }
 
 .custom-form-group button {
@@ -1426,7 +1447,7 @@ body {
 .edit__account-window {
     display: flex;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .edit__account-window .register__window-form img {
@@ -1484,4 +1505,746 @@ body {
 .edit__account-buttons a:active {
     padding-top: .1vw;
     background-color: #1d2b36;
+}
+
+@media only screen and (min-width : 320px) and (max-width: 1024px) {
+    .container {
+        padding: 8vw;
+    }
+
+    #navbar {
+        font-size: 3vw;
+        height: 12vw;
+    }
+
+    .navbar__menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 8vw;
+        width: 100%;
+        z-index: 3;
+        position: absolute;
+        top: 15vw;
+        left: 0;
+        background-color: rgb(29, 43, 54);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 200ms ease-in-out;
+    }
+
+    .navbar__menu.active {
+        top: 12vw;
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .navbar__menu ul li ul.dropdown {
+        position: absolute;
+        border-radius: 1vw;
+    }
+
+    #navbar .navbar__menu ul li a {
+        color: deepskyblue;
+    }
+
+    #navbar .navbar__menu ul li a:hover {
+        color: orangered;
+    }
+
+    .navbar__menu ul li {
+        padding: 1vw;
+        font-size: 3vw;
+    }
+
+    .navbar__menu ul li:hover {
+    }
+
+    #navbar .navbar__buttons,
+    #navbar .navbar__button.logout {
+        font-size: 3vw;
+    }
+
+    #navbar .navbar__logo img {
+        height: 10vw;
+        width: 10vw;
+    }
+
+    .navbar__menu .navbar__menu-arrow {
+        margin-left: 1vw;
+        width: 1.5vw;
+        height: 1.5vw;
+        fill: deepskyblue;
+    }
+
+    .navbar__burger {
+        position: relative;
+        display: block;
+        width: 8vw;
+        height: 6vw;
+        cursor: pointer;
+    }
+
+    .navbar__burger:hover {
+        cursor: pointer;
+    }
+
+    .navbar__burger::before,
+    .navbar__burger::after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: .8vw;
+        border-radius: .4vw;
+        left: 0;
+        background-color: orangered;
+        transition: all 200ms ease;
+    }
+
+    .navbar__burger span {
+        position: absolute;
+        width: 100%;
+        height: .8vw;
+        border-radius: .4vw;
+        background-color: orangered;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 200ms ease;
+    }
+
+    .navbar__burger::before {
+        top: 0;
+    }
+
+    .navbar__burger::after {
+        bottom: 0;
+    }
+
+    .navbar__burger.active span {
+        transform: scale(0);
+    }
+
+    .navbar__burger.active::before {
+        transform: rotate(45deg);
+        top: 2.6vw;
+    }
+
+    .navbar__burger.active::after {
+        bottom: 2.6vw;
+        transform: rotate(-45deg);
+    }
+
+    .search__window {
+        padding: 8vw;
+    }
+
+    .search__window-input,
+    .search__window-button {
+        padding: 0 5vw;
+        height: 8vw;
+        font-size: 3vw;
+    }
+
+    .search__window-form .functions__search {
+        width: 3vw;
+        height: 3vw;
+    }
+
+    .search__window-input {
+        padding-right: 17vw;
+    }
+
+    .search__window-button {
+        padding: 0 3vw;
+        width: 20%;
+    }
+
+    .search__window-close {
+        width: 3vw;
+        height: 3vw;
+        right: -7%;
+    }
+
+    .container.functions {
+        font-size: 3vw;
+        padding: 0 8vw;
+        height: 8vw;
+    }
+
+    .container.functions .functions__search {
+        width: 3vw;
+    }
+
+    .container.news {
+        padding: 6vw 8vw;
+    }
+
+    .container .news__wrapper {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 40vw;
+        gap: 6vw;
+    }
+
+    .news__item .fav-icon {
+        width: 5vw;
+        height: 5vw;
+    }
+
+    .news__item .fav-icon:focus {
+        outline: none;
+    }
+
+    .news__item-category {
+        font-size: 2vw;
+    }
+
+    .news__item-title {
+        font-size: 2.3vw;
+    }
+
+    .news__item-details {
+        font-size: 2vw;
+        padding: 1vw 3vw;
+        border-radius: 3vw;
+    }
+
+    .news__all {
+        margin-top: 3vw;
+        font-size: 2.5vw;
+    }
+
+    .container.footer {
+        padding: 5vw 8vw;
+        height: 65vw;
+    }
+
+    .footer__content img {
+        width: 12vw;
+        height: 12vw;
+    }
+
+    .footer__content p {
+        font-size: 2.3vw;
+    }
+
+    .footer__social-content {
+        width: 20%;
+    }
+
+    .footer__social-icon {
+        width: 4vw;
+        height: 4vw;
+    }
+
+    .footer__social-wrapper span {
+        font-size: 2.3vw;
+    }
+
+    .register__window-logo,
+    .login__window-logo {
+        font-size: 5vw;
+    }
+
+    .register__window-logo img,
+    .login__window-logo img {
+        height: 12vw;
+        width: 12vw;
+    }
+
+    .register__window-form,
+    .login__window-form {
+        height: 90vw;
+        width: 80vw;
+        margin-top: 4vw;
+        border-radius: 2vw;
+    }
+
+    .register__window-form h1,
+    .login__window-form h1{
+        font-size: 5vw;
+    }
+
+    .register__window-form-content,
+    .login__window-form-content {
+        width: 85%;
+    }
+
+    .register__window-input,
+    .register__window-button,
+    .login__window-input,
+    .login__window-button,
+    input[type="password"] {
+        border-radius: 2vw;
+        font-size: 3vw;
+    }
+
+    .register__window-form-img.clapperboard,
+    .register__window-form-img.director-chair {
+        width: 15vw;
+        height: 15vw;
+    }
+
+    .login__window .login__window-form {
+        height: 65vw;
+    }
+
+    .login__window-form .need-to-register,
+    .forgot__password-link {
+        font-size: 3vw;
+    }
+
+    .login__window-input-checkbox {
+        font-size: 3vw;
+    }
+
+    .login__window-form-img.actor,
+    .login__window-form-img.cinema {
+        width: 13vw;
+        height: 13vw;
+    }
+
+    .forgot__password__confirmation {
+        width: 80vw;
+        height: 40vw;
+        border-radius: 2vw;
+        margin-top: 4vw;
+    }
+
+    .forgot__password__confirmation h1 {
+        font-size: 5vw;
+    }
+
+    .forgot__password__confirmation p {
+        font-size: 4vw;
+    }
+
+    .forgot__password__window .confirmation-mail {
+        width: 12vw;
+        height: 12vw;
+    }
+
+    .change__password__window .register__window-form,
+    .reset__password__window .register__window-form {
+        height: 55vw;
+    }
+
+    .edit__account-window .register__window-form {
+        height: 55vw;
+    }
+
+    .edit__account-window .register__window-form-content {
+        height: 80%;
+        justify-content: space-between;
+    }
+
+    .edit__account-window .register__window-form-content img {
+        height: 18vw;
+        width: 18vw;
+    }
+
+    .edit__account-window .edit__account-buttons,
+    .edit__account-window .register__window-input {
+        height: 20%;
+    }
+
+    .edit__account-buttons .register__window-button,
+    .edit__account-buttons a {
+        border-radius: 2vw;
+        font-size: 3vw;
+    }
+
+    .register__window-form-img.movie-script {
+        left: -10%;
+        width: 13vw;
+        height: 13vw;
+    }
+
+    #navbar + .container.banner {
+        height: 60vw;
+    }
+
+    .banner__content-title {
+        font-size: 5vw;
+    }
+
+    .banner__content-category,
+    .banner__content-date {
+        font-size: 3.5vw;
+    }
+    
+    
+
+    .container.post,
+    .container.favorite-news {
+        padding: 8vw;
+        font-size: 4vw;
+    }
+
+    .favorite-news .news__item-header p,
+    .favorite-news .news__item-header span {
+        font-size: 3.5vw;
+    }
+
+    .post__comments-user-icon {
+        width: 8vw;
+        height: 8vw;
+        margin-right: 2vw;
+    }
+
+    .post__comments-details,
+    .post__comments-content p,
+    .post__comments-date,
+    .post__comments-input {
+        font-size: 3vw;
+    }
+
+    .post__comments-form {
+        height: 8vw;
+    }
+
+    .post__comments-input {
+        font-size: 3.5vw;
+        border-radius: 2vw;
+        width: 80%;
+    }
+
+    .post__comments-form button {
+        height: 5vw;
+        width: 5vw;
+    }
+
+    .account__menu {
+        position: fixed;
+        width: 100%;
+        padding: 30vw 8vw;
+        left: -100vw;
+        pointer-events: none;
+        transition: all 300ms ease-in-out;
+    }
+
+    .account__menu.active {
+        left: 0;
+        pointer-events: all;
+    }
+
+    .account__menu h4 {
+        font-size: 4vw;
+        text-align: center;
+    }
+
+    .account__menu hr {
+        margin-top: 1vw;
+    }
+
+    .account__menu-icons {
+        top: 20vw;
+        width: 10vw;
+        height: 10vw;
+    }
+
+    .account__menu-links,
+    .admin__links {
+        font-size: 4vw;
+        align-items: center;
+    }
+
+    .account__menu-links a {
+        padding: 1vw;
+    }
+
+    .admin__links {
+        margin-top: 5vw;
+    }
+
+    .posts__control-buttons {
+        height: 16vw;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .posts__control-buttons a {
+        font-size: 3vw;
+        height: 40%;
+        width: 60%;
+        border-radius: 2vw;
+    }
+
+    .users__control h1,
+    .roles__control h1,
+    .posts__control h1 {
+        font-size: 4vw;
+    }
+
+    .posts__control-table tr,
+    .posts__control-table td,
+    .posts__control-table tbody{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .posts__control-table {
+        display: flex;
+        width: 84vw;
+    }
+
+    .posts__control-table thead {
+        display: none;
+    }
+
+    .posts__control-table tr {
+        width: 100%;
+        height: 100vw;
+    }
+
+    .posts__control-table td,
+    .posts__control-table .roles__control-form-delete button,
+    .posts__control-details span,
+    .posts__control-details p,
+    .roles__control-table tr,
+    .roles__control-form-delete button,
+    .roles__control-form h2 {
+        font-size: 4vw;
+    }
+
+    .posts__control-table-content {
+        height: 70%;
+        width: 100%;
+    }
+
+    .posts__control-table .news__item-details {
+        font-size: 4vw;
+        border-radius: 4vw;
+    }
+
+    .roles__control {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .roles__control-table,
+    .users__control-table {
+        width: 84vw;
+        border-radius: 2vw;
+    }
+
+    .roles__control-table tbody tr,
+    .users__control-table tbody tr {
+        height: 10vw;
+    }
+
+    .roles__control-form {
+        align-self: center;
+        width: 84vw;
+        height: 40vw;
+        margin-left: 0;
+        border-radius: 2vw;
+    }
+
+    .roles__control-input,
+    .roles__control-form button {
+        font-size: 4vw;
+        border-radius: 2vw;
+    }
+
+    .users__control-table tr {
+        font-size: 2.5vw;
+    }
+
+    .users__control-table thead tr {
+        height: 8vw;
+    }
+
+    .roles__control-edit .roles__control-wrapper {
+        width: 80vw;
+        border-radius: 2vw;
+    }
+
+    .roles__control-wrapper form {
+        height: 30vw;
+        justify-content: space-between;
+    }
+
+    .roles__control-wrapper .custom-form-checkbox,
+    .roles__control-edit .roles__control-wrapper h1 {
+        font-size: 4vw;
+    }
+
+    .roles__control-edit form button,
+    .roles__control-edit form a {
+        font-size: 4vw;
+        height: 8vw;
+        border-radius: 1vw;
+    }
+
+    .custom-form-group-checkbox {
+        height: 30%;
+    }
+
+    .custom-form-checkbox {
+        justify-content: center;
+    }
+
+    .custom-form-checkbox label {
+        margin-right: 2vw;
+    }
+
+    .container.favorite-news h1 {
+        font-size: 4vw;
+    }
+
+    .container.favorite-news .news__wrapper {
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+        grid-auto-rows: 60vw;
+        gap: 5vw;
+    }
+
+    .container.favorite-news .news__item {
+        border-radius: 2vw;
+    }
+
+    .favorite-news .news__item .news__item-details {
+        font-size: 4vw;
+        border-radius: 4vw;
+    }
+
+    .container .news__wrapper .news__item {
+        border-radius: 1.5vw;
+    }
+
+    .forgot__password__window .register__window-form {
+        height: 45vw;
+        width: 80vw;
+    }
+
+    .forgot__password__window .login__window-form-img.actor {
+        height: 13vw;
+        width: 13vw;
+    }
+
+    .user__portfolio {
+        width: 100%;
+        border-radius: 2vw;
+        padding: 4vw;
+    }
+
+    .user__portfolio img {
+        height: 20vw;
+        width: 20vw;
+    }
+
+    .user__portfolio-icons {
+        width: 14vw;
+        height: 14vw;
+    }
+
+    .user__portfolio .user__portfolio-details {
+        height: 45vw;
+        font-size: 4vw;
+    }
+
+    .user__portfolio-details h1,
+    .user__portfolio-details h2 {
+        border-radius: 4vw;
+    }
+
+    .user__buttons {
+        width: 100%;
+        height: 10vw;
+    }
+
+    .account__control-wrapper .user__buttons a {
+        font-size: 3vw;
+        border-radius: 2vw;
+    }
+
+    .container.post__create h1{
+        font-size: 7vw;
+    }
+
+    .post__create .custom-form-group {
+        font-size: 5vw;
+    }
+
+    .container.post__create form {
+        width: 100%;
+    }
+
+    .post__create .custom-form-group input{
+        font-size: 5vw;
+        height: 8vw;
+        border-radius: 2vw;
+    }
+
+    .custom-form-group textarea {
+        font-size: 3vw;
+    }
+
+    .custom-form-group .file__label {
+        height: 15vw;
+        width: 15vw;
+    }
+
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 6vw;
+        gap: 2vw;
+    }
+
+    .form-grid .radio-group {
+        padding-left: 3vw;
+        font-size: 4vw;
+        justify-content: flex-start;
+    }
+
+    .custom-form-group button {
+        height: 8vw;
+        width: 60%;
+        font-size: 4vw;
+        border-radius: 2vw;
+    }
+}
+
+@media only screen and (min-width : 320px) and (max-width: 1024px) and (orientation: landscape) {
+    .news__item-header p, .news__item-header span {
+        font-size: 2vw;
+    }
+    
+    .account__menu {
+        flex-direction: column;
+    }
+
+    .account__menu-links,
+    .admin__links {
+        font-size: 3vw;
+        flex-direction: row;
+        padding: 0;
+    }
+
+    .account__menu-links {
+        display: flex;
+        padding: .5vw 0;
+    }
+
+    .account__menu h4 {
+        font-size: 3vw;
+    }
+
+    .account__menu hr {
+        display: none;
+    }
+
+    .admin__links {
+        margin-top: 0;
+    }
+}
+
+@media only screen and (min-width : 320px) and (max-width: 736px) and (orientation: landscape) {
+    .account__menu-links {
+        margin-top: 3vw;
+    }
 }

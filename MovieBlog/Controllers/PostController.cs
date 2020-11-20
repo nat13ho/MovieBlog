@@ -83,9 +83,12 @@ namespace MovieBlog.Controllers
                         post = new Post()
                             {Title = model.Title, Content = model.Content, Category = postCategory, Image = defaultPostImage};
                     }
-                    
-                    await _database.Posts.AddAsync(post);
-                    await _database.SaveChangesAsync();
+
+                    if (post != null)
+                    {
+                        await _database.Posts.AddAsync(post);
+                        await _database.SaveChangesAsync();
+                    }
 
                     return RedirectToAction(nameof(GetPostList));
                 }
@@ -205,55 +208,7 @@ namespace MovieBlog.Controllers
 
             return RedirectToAction("GetPostList", "Post");
         }
-
-        [HttpPost]
-        public async Task<IActionResult> RemoveComment(int? id, string postId)
-        {
-            if (id != null && postId != null)
-            {
-                var comment = await _database.Comments.FirstOrDefaultAsync(c => c.Id == id);
-                var post = await _database.Posts.FirstOrDefaultAsync(p => p.Id == postId);
-
-                if (comment != null && post != null)
-                {
-                    post.Comments.Remove(comment);
-                    _database.Comments.Remove(comment);
-                    await _database.SaveChangesAsync();
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-
-            return RedirectToAction("Show", new {id = postId});
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddComment(Comment comment, string postId)
-        {
-            if (ModelState.IsValid)
-            {
-                var post = await _database.Posts.FirstOrDefaultAsync(p => p.Id == postId);
-                var user = await _userManager.FindByNameAsync(User.Identity.Name);
-
-                if (post != null && user != null)
-                {
-                    comment.Post = post;
-                    comment.User = user;
-                    post.Comments.Add(comment);
-                    await _database.Comments.AddAsync(comment);
-                    await _database.SaveChangesAsync();
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-
-            return RedirectToAction("Show", new {id = postId});
-        }
-
+        
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Show(string id)
