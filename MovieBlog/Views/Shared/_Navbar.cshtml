@@ -1,10 +1,20 @@
 @model List<Category>
 
 <nav id="navbar">
-    <a asp-controller="Home" asp-action="Index" class="navbar__logo">
-        <img src="~/img/movieblog.png" alt="Navbar logo">
-        <span>MovieBlog</span>
-    </a>
+    <div class="navbar__container">
+        <a asp-controller="Home" asp-action="Index" class="navbar__logo">
+            <img src="~/img/movieblog.png" alt="Navbar logo">
+            <span>MovieBlog</span>
+        </a>
+        <div class="toggle__mode">
+            <input type="checkbox" class="toggle-mode__checkbox" id="toggle-mode__checkbox">
+            <label class="toggle-mode__label" for="toggle-mode__checkbox">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="toggle-mode__ball"></span>
+            </label>
+        </div>
+    </div>
     <div class="navbar__menu">
         <ul>
             <li>
@@ -90,5 +100,7 @@
             </form>
         }
     </div>
-    <div class="navbar__burger"><span></span></div>
+    <div class="navbar__burger">
+        <span></span>
+    </div>
 </nav>

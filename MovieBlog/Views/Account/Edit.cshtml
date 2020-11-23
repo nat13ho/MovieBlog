@@ -10,13 +10,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="stylesheet" href="~/css/all.min.css">
     <link rel="short icon" type="image/png" href="~/img/movieblog.png">
     <script src="~/lib/jquery/dist/jquery.min.js"></script>s
+    <script src="~/js/darkmode.js"></script>
     <title>Редактирование аккаунта</title>
 </head>
 <body>
 <section class="container edit__account-window">
     <form asp-controller="Account" asp-action="Edit" class="register__window-form" method="post" enctype="multipart/form-data">
+        <div class="toggle__mode">
+            <input type="checkbox" class="toggle-mode__checkbox" id="toggle-mode__checkbox">
+            <label class="toggle-mode__label" for="toggle-mode__checkbox">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="toggle-mode__ball"></span>
+            </label>
+        </div>
         <h1>Редактирование пользователя</h1>
         <div class="register__window-form-content">
             <input asp-for="UserId" type="hidden">

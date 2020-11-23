@@ -33,14 +33,38 @@
                             {
                                 <form asp-controller="Comment" asp-action="Remove" asp-route-id="@comment.Id" class="post__comments-delete">
                                     <input name="postId" value="@Model.Post.Id" type="hidden">
-                                    <button type="submit"></button>
+                                    <button type="submit">
+                                        <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             viewBox="0 0 512.001 512.001" xml:space="preserve">
+                                            <g>
+                                                <g>
+                                                    <path d="M294.111,256.001L504.109,46.003c10.523-10.524,10.523-27.586,0-38.109c-10.524-10.524-27.587-10.524-38.11,0L256,217.892
+                                                                                    L46.002,7.894c-10.524-10.524-27.586-10.524-38.109,0s-10.524,27.586,0,38.109l209.998,209.998L7.893,465.999
+                                                                                    c-10.524,10.524-10.524,27.586,0,38.109c10.524,10.524,27.586,10.523,38.109,0L256,294.11l209.997,209.998
+                                                                                    c10.524,10.524,27.587,10.523,38.11,0c10.523-10.524,10.523-27.586,0-38.109L294.111,256.001z"/>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </button>
                                 </form>
                             }
                             else if (comment.User.UserName == User.Identity.Name)
                             {
                                 <form asp-controller="Comment" asp-action="Remove" asp-route-id="@comment.Id" class="post__comments-delete">
                                     <input name="postId" value="@Model.Post.Id" type="hidden">
-                                    <button type="submit"></button>
+                                    <button type="submit">
+                                        <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             viewBox="0 0 512.001 512.001" xml:space="preserve">
+                                            <g>
+                                                <g>
+                                                    <path d="M294.111,256.001L504.109,46.003c10.523-10.524,10.523-27.586,0-38.109c-10.524-10.524-27.587-10.524-38.11,0L256,217.892
+                                                                                                                            L46.002,7.894c-10.524-10.524-27.586-10.524-38.109,0s-10.524,27.586,0,38.109l209.998,209.998L7.893,465.999
+                                                                                                                            c-10.524,10.524-10.524,27.586,0,38.109c10.524,10.524,27.586,10.523,38.109,0L256,294.11l209.997,209.998
+                                                                                                                            c10.524,10.524,27.587,10.523,38.11,0c10.523-10.524,10.523-27.586,0-38.109L294.111,256.001z"/>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </button>
                                 </form>
                             }
                         }
@@ -58,7 +82,11 @@
                 <img class="post__comments-user-icon" src="@Model.User.Image.Path" alt="User image">
                 <input name="postId" value="@Model.Post.Id" type="hidden">
                 <textarea asp-for="Comment.Content" class="post__comments-input" placeholder="Оставить комментарий"></textarea>
-                <button type="submit"></button>
+                <button type="submit">
+                    <svg height="512" viewBox="0 0 465.882 465.882" width="512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m465.882 0-465.882 262.059 148.887 55.143 229.643-215.29-174.674 235.65.142.053-.174-.053v128.321l83.495-97.41 105.77 39.175z"/>
+                    </svg>
+                </button>
             </form>
         }
     </div>

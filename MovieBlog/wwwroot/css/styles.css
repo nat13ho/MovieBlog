@@ -10,6 +10,9 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Jost, sans-serif;
+    --dark-bg-color: #131d24;
+    --dark-content-color: #1d2b36;
+    --light-content-color: #f7faff;
 }
 
 a {
@@ -42,7 +45,7 @@ body {
     z-index: 999;
     background-color: white;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    transition: 0.3s ease-in-out;
+    transition: all 0.3s ease, background-color 0s;
 }
 
 .navbar__burger {
@@ -60,7 +63,7 @@ input[type="password"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.3s ease-in-out;
+    transition: all 0.3s ease, background-color 0s;
 }
 
 input[type="password"] {
@@ -70,6 +73,11 @@ input[type="password"] {
 
 #navbar a {
     color: black;
+}
+
+#navbar .navbar__container {
+    display: flex;
+    align-items: center;
 }
 
 .navbar__logo {
@@ -186,7 +194,7 @@ input[type="password"] {
     justify-content: space-between;
     font-size: 1.3vw;
     height: 4vw;
-    background-color: #f7faff;
+    background-color: var(--light-content-color);
 }
 
 .container.functions ul {
@@ -235,7 +243,7 @@ input[type="password"] {
     background-color: rgba(0,0,0,0.7);
     opacity: 0;
     pointer-events: none;
-    transition: all 150ms ease-in-out;
+    transition: opacity 150ms ease-in-out;
 }
 
 .search__window-form {
@@ -400,7 +408,7 @@ input[type="password"] {
     width: 100%;
     bottom: 0;
     z-index: 99;
-    background-color: #f7faff;
+    background-color: var(--light-content-color);
 }
 
 .news__item-category {
@@ -452,7 +460,7 @@ input[type="password"] {
     height: 30vw;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: rgb(29, 43, 54);
+    background-color: var(--dark-content-color);
 }
 
 .container.footer .footer__content {
@@ -541,7 +549,7 @@ input[type="password"] {
 .container.post {
     font-size: 1.5vw;
     flex-direction: column;
-    background-color: #f7faff;
+    background-color: var(--light-content-color);
     padding: 4vw 22vw;
 }
 
@@ -618,9 +626,16 @@ input[type="password"] {
     border: none;
     width: 1vw;
     height: 1vw;
-    background: url('../img/cancel.svg') no-repeat center top / cover;
+    background: none;
     cursor: pointer;
     transition: all 200ms ease;
+}
+
+.post__comments-delete button svg,
+.post__comments-form button svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .post__comments-delete button:focus {
@@ -663,7 +678,7 @@ input[type="password"] {
     right: 0;
     height: 2.5vw;
     width: 2.5vw;
-    background: url("../img/send.svg") no-repeat center top / cover;
+    background: none;
     border: none;
 }
 
@@ -689,7 +704,7 @@ input[type="password"] {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: #f7faff;
+    background-color: var(--light-content-color);
 }
 
 .register__window-logo,
@@ -721,6 +736,10 @@ input[type="password"] {
     width: 45vw;
     border-radius: .5vw;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.login__window-form .validation-summary-errors {
+    color: red;
 }
 
 .change__password__window .register__window-form,
@@ -946,6 +965,7 @@ input[type="password"] {
 .account__control-wrapper {
     padding: 5vw 5vw 5vw 25vw;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 .user__portfolio {
@@ -1279,7 +1299,7 @@ input[type="password"] {
     flex-direction: column;
     justify-content: space-evenly;
     bottom: 0;
-    background-color: #f7faff;
+    background-color: var(--light-content-color);
     padding: 1vw 2vw;
 }
 
@@ -1507,6 +1527,165 @@ input[type="password"] {
     background-color: #1d2b36;
 }
 
+.toggle-mode__label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 5px;
+    padding: 5px;
+    font-size: 1rem;
+    width: 50px;
+    height: 26px;
+    border-radius: 50px;
+    background-color: black;
+}
+
+.toggle-mode__label:hover {
+    cursor: pointer;
+}
+
+.toggle-mode__ball {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: white;
+    left: 2px;
+    top: 2px;
+    transition: transform 200ms ease;
+}
+
+.fa-moon {
+    color: #f1c40f;
+}
+
+.fa-sun {
+    color: #f39c12;
+}
+
+.toggle-mode__checkbox {
+    display: none;
+}
+
+.toggle-mode__checkbox:checked + .toggle-mode__label .toggle-mode__ball {
+    transform: translateX(24px);
+}
+
+body.dark {
+    background-color: var(--dark-content-color);
+}
+
+#navbar.dark {
+    background-color: var(--dark-bg-color);
+    color: white;
+}
+
+#navbar.dark a,
+.navbar__logo span.dark {
+    color: white;
+}
+
+#navbar.dark .navbar__menu-arrow,
+.container.functions.dark .functions__search {
+    fill: white;
+}
+
+#navbar.dark .navbar__button.register {
+    color: #37c437;
+}
+
+#navbar.dark .navbar__button.register:hover {
+    color: #44ec44;
+}
+
+#navbar.dark .navbar__menu ul li ul.dropdown {
+    background-color: var(--dark-bg-color);
+}
+
+#navbar.dark .navbar__menu ul li ul.dropdown li:hover {
+    background-color: #0e161a;
+}
+
+.container.functions.dark span,
+.container.dark .news__item-title,
+.container.dark.post {
+    color: white;
+}
+
+.container.functions.dark .functions__search:hover {
+    fill: orangered;
+}
+
+.container.dark {
+    background-color: var(--dark-content-color);
+}
+
+.container.dark .news__item-header {
+    background-color: var(--dark-bg-color);
+}
+
+.container.dark.post .post__comments-delete button svg {
+    fill: orangered;
+}
+
+.container.dark.post .post__comments-form button svg {
+    fill: deepskyblue;
+    transition: all 200ms ease;
+}
+
+.container.dark.post .post__comments-form button:active svg {
+    fill: orangered;
+}
+
+.container.dark .post__comments-input {
+    background-color: var(--dark-bg-color);
+    color: white;
+}
+
+.container.dark .users__control h1,
+.container.dark .roles__control h1,
+.container.dark .posts__control h1,
+.container.dark .posts__control-details p,
+.container.dark .roles__control-form h2,
+.container.dark.favorite-news h1,
+.container.dark .forgot__password__confirmation p,
+.container.dark.post__create h1 {
+    color: white;
+}
+
+.container.dark .users__control-table,
+.container.dark .roles__control-table,
+.container.dark .posts__control-table {
+    color: white;
+}
+
+.container.dark .roles__control-input,
+.container.dark .login__window-input,
+.container.dark .register__window-input,
+.container.dark .custom-form-group input {
+    background-color: var(--dark-bg-color);
+    color: white;
+}
+
+.container.dark .posts__control-details {
+    background-color: var(--dark-bg-color);
+}
+
+.container.dark .register__window-logo,
+.container.dark .login__window-logo,
+.container.dark .login__window-form h1,
+.container.dark .register__window-form h1,
+.container.dark .login__window-form span,
+.container.dark .login__window-form label,
+.container.dark .roles__control-wrapper h1 {
+    color: white;
+}
+
+.container.footer.dark {
+    background-color: var(--dark-bg-color);
+}
+
 @media only screen and (min-width : 320px) and (max-width: 1024px) {
     .container {
         padding: 8vw;
@@ -1516,7 +1695,7 @@ input[type="password"] {
         font-size: 3vw;
         height: 12vw;
     }
-
+    
     .navbar__menu {
         display: flex;
         align-items: center;
@@ -1527,7 +1706,7 @@ input[type="password"] {
         position: absolute;
         top: 15vw;
         left: 0;
-        background-color: rgb(29, 43, 54);
+        background-color: var(--dark-content-color);
         opacity: 0;
         pointer-events: none;
         transition: all 200ms ease-in-out;
@@ -1873,8 +2052,6 @@ input[type="password"] {
         font-size: 3.5vw;
     }
     
-    
-
     .container.post,
     .container.favorite-news {
         padding: 8vw;
@@ -1907,6 +2084,12 @@ input[type="password"] {
         font-size: 3.5vw;
         border-radius: 2vw;
         width: 80%;
+        border: solid .3vw deepskyblue;
+    }
+
+    .post__comments-delete button {
+        height: 2.5vw;
+        width: 2.5vw;
     }
 
     .post__comments-form button {
@@ -2050,6 +2233,10 @@ input[type="password"] {
         border-radius: 2vw;
     }
 
+    .roles__control-input {
+        border: solid .3vw deepskyblue;
+    }
+    
     .users__control-table tr {
         font-size: 2.5vw;
     }
@@ -2246,5 +2433,18 @@ input[type="password"] {
 @media only screen and (min-width : 320px) and (max-width: 736px) and (orientation: landscape) {
     .account__menu-links {
         margin-top: 3vw;
+    }
+}
+
+@media only screen and (min-width : 320px) and (max-width: 667px) {
+    #navbar .navbar__logo span {
+        display: none;
+    }
+}
+
+@media only screen and (min-width : 1024px) and (max-width: 1366px) {
+    .toggle-mode__label {
+        margin-left: 20px;
+        transform: scale(1.5);
     }
 }
