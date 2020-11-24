@@ -260,12 +260,14 @@ namespace MovieBlog.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddToFavorite(string id)
+        public async Task<IActionResult> AddToFavorite(string id, string returnUrl)
         {
             if (id != null)
             {
                 var post = await _database.Posts.FirstOrDefaultAsync(p => p.Id == id);
-                var user = await _database.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+                var user = await _database.Users
+                    .Include(u => u.UserFavPosts)
+                    .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
                 if (post != null && user != null)
                 {
@@ -273,10 +275,9 @@ namespace MovieBlog.Controllers
                     await _database.UserFavPosts.AddAsync(userPost);
                     await _database.SaveChangesAsync();
 
-                    if (!user.UserFavPosts.Contains(userPost))
+                    if (!string.IsNullOrEmpty(returnUrl))
                     {
-                        user.UserFavPosts.Add(userPost);
-                        await _userManager.UpdateAsync(user);
+                        return Redirect(returnUrl);
                     }
                 }
             }
@@ -285,7 +286,7 @@ namespace MovieBlog.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RemoveFromFavorites(string id)
+        public async Task<IActionResult> RemoveFromFavorites(string id, string returnUrl)
         {
             if (id != null)
             {
@@ -297,14 +298,16 @@ namespace MovieBlog.Controllers
                 if (post != null && user != null)
                 {
                     var userPost = await _database.UserFavPosts
-                        .FirstOrDefaultAsync(p => p.UserId == user.Id);
+                        .FirstOrDefaultAsync(p => p.UserId == user.Id && p.PostId == post.Id);
 
                     if (userPost != null)
                     {
-                        if (user.UserFavPosts.Contains(userPost))
+                        user.UserFavPosts.Remove(userPost);
+                        await _userManager.UpdateAsync(user);
+                            
+                        if (!string.IsNullOrEmpty(returnUrl))
                         {
-                            user.UserFavPosts.Remove(userPost);
-                            await _userManager.UpdateAsync(user);
+                            return Redirect(returnUrl);
                         }
                     }
                     else

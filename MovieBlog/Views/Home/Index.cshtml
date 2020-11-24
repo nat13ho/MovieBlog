@@ -3,6 +3,7 @@
 @{
     Layout = "_HomeLayout";
     ViewData["Title"] = "Новости";
+    var returnUrl = Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path + Context.Request.QueryString.Value;
 }
 
 @await Html.PartialAsync("_Navbar", Model.Categories)
@@ -49,13 +50,13 @@
                 {
                     @if (Model.UserPosts.Contains(post))
                     {
-                        <form method="post" asp-controller="Post" asp-action="RemoveFromFavorites" asp-route-id="@post.Id">
+                        <form method="post" asp-controller="Post" asp-action="RemoveFromFavorites" asp-route-id="@post.Id" asp-route-returnUrl="@returnUrl">
                             <button class="fav-icon active"></button>
                         </form>
                     }
                     else
                     {
-                        <form method="post" asp-controller="Post" asp-action="AddToFavorite" asp-route-id="@post.Id">
+                        <form method="post" asp-controller="Post" asp-action="AddToFavorite" asp-route-id="@post.Id" asp-route-returnUrl="@returnUrl">
                             <button class="fav-icon"></button>
                         </form>
                     }

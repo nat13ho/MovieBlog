@@ -1,4 +1,7 @@
 @model List<Category>
+@{
+    var returnUrl = Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path;
+}
 
 <nav id="navbar">
     <div class="navbar__container">
@@ -91,7 +94,7 @@
         @if (!User.Identity.IsAuthenticated)
         {
             <a asp-controller="Account" asp-action="Register" class="navbar__button register">Зарегистрироваться</a>
-            <a asp-controller="Account" asp-action="Login" class="navbar__button login">Войти</a>
+            <a asp-controller="Account" asp-action="Login" asp-route-returnUrl="@returnUrl" class="navbar__button login">Войти</a>
         }
         else
         {

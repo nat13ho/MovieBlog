@@ -1719,6 +1719,7 @@ body.dark {
     }
 
     .navbar__menu ul li ul.dropdown {
+        min-width: 100%;
         position: absolute;
         border-radius: 1vw;
     }
@@ -1737,6 +1738,10 @@ body.dark {
     }
 
     .navbar__menu ul li:hover {
+    }
+
+    #navbar.dark .navbar__menu-arrow {
+        fill: deepskyblue;
     }
 
     #navbar .navbar__buttons,
@@ -2203,14 +2208,16 @@ body.dark {
         border-radius: 4vw;
     }
 
-    .roles__control {
+    .roles__control,
+    .users__control {
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
 
     .roles__control-table,
     .users__control-table {
-        width: 84vw;
+        width: 100%;
         border-radius: 2vw;
     }
 
