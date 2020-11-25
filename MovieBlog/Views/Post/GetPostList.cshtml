@@ -8,45 +8,49 @@
 @await Html.PartialAsync("_Navbar", Model.Categories)
 @await Html.PartialAsync("_Sidebar")
 <section class="container account__control-wrapper">
-        <div class="posts__control">
-            <div class="posts__control-buttons">
-                <a asp-controller="Post" asp-action="Create">Добавить новость</a>
-                <a asp-controller="Post" asp-action="AddCategory">Добавить жанр</a>
-            </div>
-            <h1>Все новости</h1>
-            <table class="posts__control-table">
-                <thead>
-                <tr>
-                    <th>Новости</th>
-                    <th>Дата публикации</th>
-                    <th>Редактировать</th>
-                    <th>Удалить</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach (var post in Model.Posts)
-                {
-                    <tr>
-                        <td class="posts__control-table-content">
-                            <div class="posts__control-table-content-wrapper" style="background: url('@Url.Content(post.Image.Path)') no-repeat center top / cover">
-                                <a asp-controller="Post" asp-action="Show" asp-route-id="@post.Id" class="news__item-details">Подробнее</a>
-                                <div class="posts__control-details">
-                                    <span>@post.Category.Name</span>
-                                    <p>@post.Title</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="post__date">@post.Created.ToString("MM/dd/yyyy HH:mm")</span></td>
-                        <td><a asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">Редактировать</a></td>
-                        <td>
-                            <form asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id" method="post" class="roles__control-form-delete">
-                                <button type="submit">Удалить</button>
-                            </form>
-                        </td>
-                    </tr>
-                }
-                </tbody>
-            </table>
+    <div class="posts__control">
+        <div class="posts__control-buttons">
+            <a asp-controller="Post" asp-action="Create">Добавить новость</a>
+            <a asp-controller="Post" asp-action="AddCategory">Добавить жанр</a>
         </div>
+        <h1>Все новости</h1>
+        <table class="posts__control-table">
+            <thead>
+            <tr>
+                <th>Новости</th>
+                <th>Дата публикации</th>
+                <th>Редактировать</th>
+                <th>Удалить</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var post in Model.Posts)
+            {
+                <tr>
+                    <td class="posts__control-table-content">
+                        <div class="posts__control-table-content-wrapper">
+                            <img class="news__item-img" src="@post.Image.Path" alt="News image">
+                            <a asp-controller="Post" asp-action="Show" asp-route-id="@post.Id" class="news__item-details">Подробнее</a>
+                            <div class="posts__control-details">
+                                <span>@post.Category.Name</span>
+                                <p>@post.Title</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="post__date">@post.Created.ToString("MM/dd/yyyy HH:mm")</span>
+                    </td>
+                    <td>
+                        <a asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">Редактировать</a>
+                    </td>
+                    <td>
+                        <form asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id" method="post" class="roles__control-form-delete">
+                            <button type="submit">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
 </section>
-

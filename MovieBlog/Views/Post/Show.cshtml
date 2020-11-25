@@ -3,6 +3,9 @@
 @{
     Layout = "_HomeLayout";
     ViewData["Title"] = Model.Post.Title;
+    var postUrl = Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path + Context.Request.QueryString.Value;
+    var enc = System.Net.WebUtility.UrlEncode(postUrl);
+    var text = System.Net.WebUtility.UrlEncode(Model.Post.Title);
 }
 
 @await Html.PartialAsync("_Navbar", Model.Categories)
@@ -90,4 +93,17 @@
             </form>
         }
     </div>
+    <aside class="social-media">
+        <div class="social-media-wrapper">
+            <a href="https://vk.com/share.php?url=@enc&title=@text" target="_blank">
+                <img src="~/img/017-vk.png" alt="vk share icon">
+            </a>
+            <a href="https://twitter.com/intent/tweet?url=@enc&text=@text" target="_blank">
+                <img src="~/img/001-twitter.png" alt="twitter share icon">
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=@enc" target="_blank">
+                <img src="~/img/008-facebook.png" alt="facebook share icon">
+            </a>
+        </div>
+    </aside>
 </section>

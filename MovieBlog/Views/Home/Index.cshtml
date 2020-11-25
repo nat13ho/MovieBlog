@@ -43,9 +43,11 @@
 </section>
 <section class="container news">
     <div class="news__wrapper">
+
         @foreach (var post in Model.AllPosts)
         {
-            <div class="news__item" style="background: url('@Url.Content(post.Image.Path)') no-repeat center top / cover">
+            <div class="news__item">
+                <img class="news__item-img" src="@post.Image.Path" alt="News image">
                 @if (User.Identity.IsAuthenticated)
                 {
                     @if (Model.UserPosts.Contains(post))

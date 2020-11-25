@@ -46,6 +46,7 @@ namespace MovieBlog
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
             services.AddControllersWithViews();
+            services.AddRouting(options => options.LowercaseUrls = true);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

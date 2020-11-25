@@ -13,7 +13,8 @@
     <div class="news__wrapper">
         @foreach (var post in Model.FavPosts)
         {
-            <div class="news__item" style="background: url('@Url.Content(post.Image.Path)') no-repeat center top / cover">
+            <div class="news__item">
+                <img class="news__item-img" src="@post.Image.Path" alt="News image">
                 <form method="post" asp-controller="Post" asp-action="RemoveFromFavorites" asp-route-id="@post.Id" asp-route-returnUrl="@returnUrl">
                     <button class="fav-icon active"></button>
                 </form>

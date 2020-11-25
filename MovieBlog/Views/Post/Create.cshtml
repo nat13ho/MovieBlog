@@ -18,8 +18,9 @@
     <script>
          tinymce.init({
               selector:'textarea',
-              toolbar: 'image',
-              plugins: 'autoresize image imagetools',
+              menubar: false,
+              plugins: "link image code | autoresize image imagetools | media",
+              toolbar: 'undo redo | styleselect | forecolor | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image media | code'
          });
     </script>
     <title>Добавление новости</title>

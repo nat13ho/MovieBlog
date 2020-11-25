@@ -132,6 +132,9 @@
             <e p="Jost-VariableFont_wght.ttf" t="Include" />
           </e>
           <e p="img" t="Include">
+            <e p="001-twitter.png" t="Include" />
+            <e p="008-facebook.png" t="Include" />
+            <e p="017-vk.png" t="Include" />
             <e p="cancel.svg" t="Include" />
             <e p="chevron-down.svg" t="Include" />
             <e p="image.svg" t="Include" />
