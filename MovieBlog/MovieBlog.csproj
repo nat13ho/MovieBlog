@@ -17,4 +17,24 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Migrations" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\Files\-s3ilqg9IRQ.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Files\Colin-Firth-01-thumb.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Files\Fsr_hPoNS60.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Files\icon.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\Files\IMG_9944.JPG" />
+      <_ContentIncludedByDefault Remove="wwwroot\Files\IMG_9946.JPG" />
+      <_ContentIncludedByDefault Remove="wwwroot\Files\Mg4uS74muVE.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Files\movieblog-postImage.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Files\oWr2FP0U6cU.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Files\Songbird-Movie-Images-Poster-Michael-Bay-Kj-App.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Files\T6ZBI5nNacE.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Files\uzn_15649129519.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\Files\zYNFikUT4ig.jpg" />
+    </ItemGroup>
+
 </Project>

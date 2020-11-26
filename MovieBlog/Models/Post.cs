@@ -18,10 +18,10 @@ namespace MovieBlog.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Created { get; set; } = DateTime.Now;
 
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
         public Category Category { get; set; }
         
-        public int ImageId { get; set; }
+        public string ImageId { get; set; }
         public Image Image { get; set; }
 
         public List<Comment> Comments { get; set; } = new List<Comment>();

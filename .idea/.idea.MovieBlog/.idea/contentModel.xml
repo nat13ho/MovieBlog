@@ -16,8 +16,8 @@
         </e>
         <e p="EmailService.cs" t="Include" />
         <e p="Migrations" t="Include">
-          <e p="20201106132929_initial.cs" t="Include" />
-          <e p="20201106132929_initial.Designer.cs" t="Include" />
+          <e p="20201126203511_Initial.cs" t="Include" />
+          <e p="20201126203511_Initial.Designer.cs" t="Include" />
           <e p="ApplicationContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
@@ -80,7 +80,6 @@
             <e p="ResetPasswordConfirmation.cshtml" t="Include" />
           </e>
           <e p="Home" t="Include">
-            <e p="AddImage.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
             <e p="Privacy.cshtml" t="Include" />
           </e>
@@ -113,21 +112,6 @@
             <e p="styles.css" t="Include" />
           </e>
           <e p="favicon.ico" t="Include" />
-          <e p="Files" t="Include">
-            <e p="-s3ilqg9IRQ.jpg" t="Include" />
-            <e p="Colin-Firth-01-thumb.jpg" t="Include" />
-            <e p="Fsr_hPoNS60.jpg" t="Include" />
-            <e p="icon.png" t="Include" />
-            <e p="IMG_9944.JPG" t="Include" />
-            <e p="IMG_9946.JPG" t="Include" />
-            <e p="Mg4uS74muVE.jpg" t="Include" />
-            <e p="movieblog-postImage.jpg" t="Include" />
-            <e p="oWr2FP0U6cU.jpg" t="Include" />
-            <e p="Songbird-Movie-Images-Poster-Michael-Bay-Kj-App.jpg" t="Include" />
-            <e p="T6ZBI5nNacE.jpg" t="Include" />
-            <e p="uzn_15649129519.jpg" t="Include" />
-            <e p="zYNFikUT4ig.jpg" t="Include" />
-          </e>
           <e p="fonts" t="Include">
             <e p="Jost-VariableFont_wght.ttf" t="Include" />
           </e>
@@ -140,6 +124,8 @@
             <e p="image.svg" t="Include" />
             <e p="movieblog-banner.png" t="Include" />
             <e p="movieblog.png" t="Include" />
+            <e p="MovieBlogPostImg.jpg" t="Include" />
+            <e p="MovieBlogUserImg.png" t="Include" />
             <e p="news-img.jpg" t="Include" />
             <e p="search.svg" t="Include" />
             <e p="send.svg" t="Include" />

@@ -29,7 +29,7 @@
                 <tr>
                     <td class="posts__control-table-content">
                         <div class="posts__control-table-content-wrapper">
-                            <img class="news__item-img" src="@post.Image.Path" alt="News image">
+                            <img class="news__item-img" src="@post.Image.GetSource()" alt="News image">
                             <a asp-controller="Post" asp-action="Show" asp-route-id="@post.Id" class="news__item-details">Подробнее</a>
                             <div class="posts__control-details">
                                 <span>@post.Category.Name</span>

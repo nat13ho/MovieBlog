@@ -413,7 +413,6 @@
 /Users/natho/Desktop/Programming/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/Views/Shared/_Sidebar.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/bin/Debug/netcoreapp3.1/appsettings.Development.json
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/bin/Debug/netcoreapp3.1/appsettings.json
-/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/bin/Debug/netcoreapp3.1/launchSettings.json
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/bin/Debug/netcoreapp3.1/MovieBlog.dll
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/bin/Debug/netcoreapp3.1/MovieBlog.pdb
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/bin/Debug/netcoreapp3.1/refs/Microsoft.AspNetCore.Antiforgery.dll
@@ -693,6 +692,14 @@
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.TagHelpers.input.cache
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.TagHelpers.output.cache
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.RazorCoreGenerate.cache
+/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.RazorTargetAssemblyInfo.cache
+/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.RazorTargetAssemblyInfo.cs
+/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.Views.pdb
+/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/staticwebassets/MovieBlog.StaticWebAssets.Manifest.cache
+/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/staticwebassets/MovieBlog.StaticWebAssets.xml
+/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.dll
+/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.pdb
+/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/bin/Debug/netcoreapp3.1/launchSettings.json
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/ChangePassword.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/Edit.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/Favorites.cshtml.g.cs
@@ -704,7 +711,6 @@
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/RegisterCofirmation.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/ResetPassword.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/ResetPasswordConfirmation.cshtml.g.cs
-/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/AddImage.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/Index.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/Privacy.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/AddCategory.cshtml.g.cs
@@ -721,10 +727,3 @@
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/_ValidationScriptsPartial.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/_ViewImports.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/_ViewStart.cshtml.g.cs
-/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.RazorTargetAssemblyInfo.cache
-/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.RazorTargetAssemblyInfo.cs
-/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.Views.pdb
-/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/staticwebassets/MovieBlog.StaticWebAssets.Manifest.cache
-/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/staticwebassets/MovieBlog.StaticWebAssets.xml
-/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.dll
-/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.pdb

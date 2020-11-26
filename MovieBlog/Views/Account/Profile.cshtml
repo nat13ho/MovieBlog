@@ -9,7 +9,7 @@
 @await Html.PartialAsync("_Sidebar")
 <section class="container account__control-wrapper">
     <div class="user__portfolio">
-        <img src="@Model.User.Image.Path" alt="User image">
+        <img src="@Model.User.Image.GetSource()" alt="User image">
         <div class="user__portfolio-details">
             <span>Имя пользователя</span>
             <h1>@Model.User.UserName</h1>

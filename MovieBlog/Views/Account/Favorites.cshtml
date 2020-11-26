@@ -14,7 +14,7 @@
         @foreach (var post in Model.FavPosts)
         {
             <div class="news__item">
-                <img class="news__item-img" src="@post.Image.Path" alt="News image">
+                <img class="news__item-img" src="@post.Image.GetSource()" alt="News image">
                 <form method="post" asp-controller="Post" asp-action="RemoveFromFavorites" asp-route-id="@post.Id" asp-route-returnUrl="@returnUrl">
                     <button class="fav-icon active"></button>
                 </form>

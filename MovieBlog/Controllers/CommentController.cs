@@ -43,9 +43,9 @@ namespace MovieBlog.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> Remove(int? id, string postId)
+        public async Task<IActionResult> Remove(string id, string postId)
         {
-            if (id != null && postId != null)
+            if (!string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(postId))
             {
                 var comment = await _database.Comments.FirstOrDefaultAsync(c => c.Id == id);
                 var post = await _database.Posts.FirstOrDefaultAsync(p => p.Id == postId);

@@ -37,7 +37,7 @@ namespace MovieBlog.Controllers
             var user = await _database.Users
                 .Include(u => u.Image)
                 .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
-            var categories = _database.Categories.ToList();
+            var categories = await _database.Categories.OrderBy(c => c.Name).ToListAsync();
 
             if (user != null)
             {
@@ -57,9 +57,9 @@ namespace MovieBlog.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            var defaultImage = await _database.Images.FirstOrDefaultAsync(i => i.Path == "/Files/icon.png");
+            var defaultImage = await _database.Images.FirstOrDefaultAsync(i => i.Name == "MovieBlogUserImg");
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && defaultImage != null)
             {
                 var user = new User {Email = model.Email, UserName = model.Username, Image = defaultImage};
                 var userRole = await _roleManager.FindByNameAsync("User");
@@ -307,7 +307,7 @@ namespace MovieBlog.Controllers
                     .Include(p => p.Post.Comments)
                     .Where(p => p.UserId == user.Id).Select(p => p.Post).ToList();
 
-                var categories = _database.Categories.ToList();
+                var categories = await _database.Categories.OrderBy(c => c.Name).ToListAsync();
 
                 return View(new FavoritesViewModel() {FavPosts = userFavPosts, Categories = categories});
             }
@@ -346,37 +346,34 @@ namespace MovieBlog.Controllers
         public async Task<IActionResult> Edit(EditAccountViewModel model)
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == model.UserId);
+            var defaultUserImage = await _database.Images.FirstOrDefaultAsync(i => i.Name == "MovieBlogUserImg");
 
             if (user != null)
             {
                 if (model.NewUserImage != null)
                 {
-                    var listOfImages = _database.Images.Select(i => i.Name).ToList();
-
-                    if (listOfImages.Contains(model.NewUserImage.FileName))
+                    var fileName = Path.GetFileNameWithoutExtension(model.NewUserImage.FileName);
+                    var extension = Path.GetExtension(model.NewUserImage.FileName);
+                    var imageModel = new Image()
                     {
-                        var newImage = await _database.Images.FirstOrDefaultAsync(i => i.Name == model.NewUserImage.FileName);
+                        Name = fileName,
+                        Extension = extension
+                    };
 
-                        if (newImage != null)
-                        {
-                            user.Image = newImage;
-                        }
-                    }
-                    else
+                    await using (var dataStream = new MemoryStream())
                     {
-                        var path = "/Files/" + model.NewUserImage.FileName;
-
-                        await using (var fileStream = new FileStream(_environment.WebRootPath + path, FileMode.Create))
-                        {
-                            await model.NewUserImage.CopyToAsync(fileStream);
-                        }
-
-                        await _database.Images.AddAsync(new Image {Name = model.NewUserImage.FileName, Path = path});
-                        await _database.SaveChangesAsync();
-
-                        var image = await _database.Images.FirstOrDefaultAsync(i => i.Path == path);
-                        user.Image = image;
+                        await model.NewUserImage.CopyToAsync(dataStream);
+                        imageModel.Data = dataStream.ToArray();
                     }
+
+                    if (user.Image != defaultUserImage)
+                    {
+                        _database.Images.Remove(user.Image);
+                    }
+                    
+                    user.Image = imageModel;
+                    await _database.Images.AddAsync(imageModel);
+                    await _database.SaveChangesAsync();
                 }
 
                 user.UserName = model.Username;

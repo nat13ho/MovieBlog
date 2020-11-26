@@ -144,7 +144,7 @@ input[type="password"] {
     overflow: hidden;
     opacity: 1;
     pointer-events: all;
-    top: 3vw;
+    top: 2.5vw;
 }
 
 .navbar__menu ul li ul.dropdown li {
@@ -1636,7 +1636,7 @@ input[type="password"] {
 }
 
 body.dark {
-    background-color: var(--dark-content-color);
+    background-color: var(--dark-bg-color);
 }
 
 #navbar.dark {
@@ -2116,6 +2116,7 @@ body.dark {
     }
 
     .banner__content-title {
+        width: 100%;
         font-size: 5vw;
     }
 

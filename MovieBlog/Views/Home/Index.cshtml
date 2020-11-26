@@ -47,7 +47,7 @@
         @foreach (var post in Model.AllPosts)
         {
             <div class="news__item">
-                <img class="news__item-img" src="@post.Image.Path" alt="News image">
+                <img class="news__item-img" src="@post.Image.GetSource()" alt="News image">
                 @if (User.Identity.IsAuthenticated)
                 {
                     @if (Model.UserPosts.Contains(post))

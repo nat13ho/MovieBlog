@@ -2,7 +2,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,28 +15,25 @@ namespace MovieBlog.Controllers
     {
         private readonly ApplicationContext _database;
         private readonly UserManager<User> _userManager;
-        private readonly IWebHostEnvironment _environment;
 
-        public PostController(ApplicationContext context, UserManager<User> userManager,
-            IWebHostEnvironment environment)
+        public PostController(ApplicationContext context, UserManager<User> userManager)
         {
-            _environment = environment;
             _database = context;
             _userManager = userManager;
         }
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View(new CreatePostViewModel() {AllCategories = _database.Categories.ToList()});
+            return View(new CreatePostViewModel() {AllCategories = await _database.Categories.OrderBy(c => c.Name).ToListAsync()});
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Create(CreatePostViewModel model, string category)
         {
-            var defaultPostImage = await _database.Images.FirstOrDefaultAsync(i => i.Name == "movieblog-postImage.jpg");
+            var defaultPostImage = await _database.Images.FirstOrDefaultAsync(i => i.Name == "MovieBlogPostImg");
             
             if (ModelState.IsValid)
             {
@@ -45,38 +41,29 @@ namespace MovieBlog.Controllers
 
                 if (postCategory != null)
                 {
-                    Post post = default;
+                    Post post;
                     
                     if (model.Image != null)
                     {
-                        var listOfImages = _database.Images.Select(i => i.Name).ToList();
-
-                        if (listOfImages.Contains(model.Image.FileName))
+                        var fileName = Path.GetFileNameWithoutExtension(model.Image.FileName);
+                        var extension = Path.GetExtension(model.Image.FileName);
+                        var imageModel = new Image()
                         {
-                            var newImage = await _database.Images.FirstOrDefaultAsync(i => i.Name == model.Image.FileName);
+                            Name = fileName,
+                            Extension = extension
+                        };
 
-                            if (newImage != null)
-                            {
-                                post = new Post()
-                                    {Title = model.Title, Content = model.Content, Category = postCategory, Image = newImage};
-                            }
-                        }
-                        else
+                        await using (var dataStream = new MemoryStream())
                         {
-                            var path = "/Files/" + model.Image.FileName;
-
-                            await using (var fileStream = new FileStream(_environment.WebRootPath + path, FileMode.Create))
-                            {
-                                await model.Image.CopyToAsync(fileStream);
-                            }
-
-                            await _database.Images.AddAsync(new Image {Name = model.Image.FileName, Path = path});
-                            await _database.SaveChangesAsync();
-
-                            var image = await _database.Images.FirstOrDefaultAsync(i => i.Path == path);
-                            post = new Post()
-                                {Title = model.Title, Content = model.Content, Category = postCategory, Image = image};
+                            await model.Image.CopyToAsync(dataStream);
+                            imageModel.Data = dataStream.ToArray();
                         }
+
+                        await _database.Images.AddAsync(imageModel);
+                        await _database.SaveChangesAsync();
+                            
+                        post = new Post()
+                            {Title = model.Title, Content = model.Content, Category = postCategory, Image = imageModel};
                     }
                     else
                     {
@@ -84,17 +71,14 @@ namespace MovieBlog.Controllers
                             {Title = model.Title, Content = model.Content, Category = postCategory, Image = defaultPostImage};
                     }
 
-                    if (post != null)
-                    {
-                        await _database.Posts.AddAsync(post);
-                        await _database.SaveChangesAsync();
-                    }
+                    await _database.Posts.AddAsync(post);
+                    await _database.SaveChangesAsync();
 
                     return RedirectToAction(nameof(GetPostList));
                 }
             }
 
-            return View(new CreatePostViewModel() {AllCategories = _database.Categories.ToList()});
+            return View(new CreatePostViewModel() {AllCategories = await _database.Categories.OrderBy(c => c.Name).ToListAsync()});
         }
 
         [Authorize(Roles = "Admin")]
@@ -116,7 +100,7 @@ namespace MovieBlog.Controllers
                         Title = post.Title,
                         Content = post.Content,
                         Category = post.Category.Name,
-                        AllCategories = _database.Categories.ToList()
+                        AllCategories = await _database.Categories.OrderBy(c => c.Name).ToListAsync()
                     };
 
                     return View(model);
@@ -142,17 +126,23 @@ namespace MovieBlog.Controllers
                 {
                     if (model.Image != null)
                     {
-                        var path = "/Files/" + model.Image.FileName;
-
-                        await using (var fileStream = new FileStream(_environment.WebRootPath + path, FileMode.Create))
+                        var fileName = Path.GetFileNameWithoutExtension(model.Image.FileName);
+                        var extension = Path.GetExtension(model.Image.FileName);
+                        var imageModel = new Image()
                         {
-                            await model.Image.CopyToAsync(fileStream);
+                            Name = fileName,
+                            Extension = extension
+                        };
+
+                        await using (var dataStream = new MemoryStream())
+                        {
+                            await model.Image.CopyToAsync(dataStream);
+                            imageModel.Data = dataStream.ToArray();
                         }
 
-                        await _database.Images.AddAsync(new Image {Name = model.Image.FileName, Path = path});
+                        await _database.Images.AddAsync(imageModel);
                         await _database.SaveChangesAsync();
-                        var image = await _database.Images.FirstOrDefaultAsync(i => i.Path == path);
-                        post.Image = image;
+                        post.Image = imageModel;
                     }
 
                     post.Title = model.Title;
@@ -182,7 +172,7 @@ namespace MovieBlog.Controllers
                 if (post != null)
                 {
                     var postImage = await _database.Images.FirstOrDefaultAsync(i => i.Id == post.ImageId);
-                    var defaultPostImage = await _database.Images.FirstOrDefaultAsync(i => i.Name == "movieblog-postImage.jpg");
+                    var defaultPostImage = await _database.Images.FirstOrDefaultAsync(i => i.Name == "MovieBlogPostImg");
 
                     if (postImage != null)
                     {
@@ -221,13 +211,14 @@ namespace MovieBlog.Controllers
                     .Include(p => p.Comments)
                     .FirstOrDefaultAsync(p => p.Id == id);
 
-                var postComments = _database.Comments
+                var postComments = await _database.Comments
                     .Include(c => c.Post)
                     .Include(c => c.User)
                     .Include(c => c.User.Image)
                     .Where(c => c.PostId == id)
-                    .ToList();
-                var categories = _database.Categories.ToList();
+                    .OrderBy(c => c.CreatedAt)
+                    .ToListAsync();
+                var categories = await _database.Categories.OrderBy(c => c.Name).ToListAsync();
                 User user = default;
 
                 if (User.Identity.IsAuthenticated)
@@ -330,7 +321,7 @@ namespace MovieBlog.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public IActionResult AddCategory() => View(_database.Categories.ToList());
+        public async Task<IActionResult> AddCategory() => View(await _database.Categories.OrderBy(c => c.Name).ToListAsync());
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
@@ -348,14 +339,14 @@ namespace MovieBlog.Controllers
                 }
             }
             
-            return View(_database.Categories.ToList());
+            return View(await _database.Categories.OrderBy(c => c.Name).ToListAsync());
         }
         
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<IActionResult> RemoveCategory(int? id)
+        public async Task<IActionResult> RemoveCategory(string id)
         {
-            if (id != null)
+            if (!string.IsNullOrEmpty(id))
             {
                 var oldCategory = await _database.Categories.FirstOrDefaultAsync(c => c.Id == id);
                 
@@ -371,7 +362,7 @@ namespace MovieBlog.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet]
-        public IActionResult GetPostList()
+        public async Task<IActionResult> GetPostList()
         {
             var posts = _database.Posts
                 .Include(p => p.Image)
@@ -380,7 +371,7 @@ namespace MovieBlog.Controllers
                 .OrderByDescending(p => p.Created)
                 .ToList();
             
-            var categories = _database.Categories.ToList();
+            var categories = await _database.Categories.OrderBy(c => c.Name).ToListAsync();
 
             return View(new PostListViewModel() {Posts = posts, Categories = categories});
         }

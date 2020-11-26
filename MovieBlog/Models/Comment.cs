@@ -5,8 +5,7 @@ namespace MovieBlog.Models
 {
     public class Comment
     {
-        [Required]
-        public int Id { get; set; }
+        [Required] public string Id { get; set; } = Guid.NewGuid().ToString();
 
         [Required(ErrorMessage = "Комментарий не может быть пустым!")]
         public string Content { get; set; }

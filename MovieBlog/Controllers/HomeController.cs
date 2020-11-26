@@ -18,12 +18,10 @@ namespace MovieBlog.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationContext _database;
-        private readonly IWebHostEnvironment _environment;
 
-        public HomeController(ApplicationContext context, IWebHostEnvironment environment)
+        public HomeController(ApplicationContext context)
         {
             _database = context;
-            _environment = environment;
         }
 
         public async Task<IActionResult> Index(string sortOrder, string searchString, string category, string showAll)
@@ -34,14 +32,12 @@ namespace MovieBlog.Controllers
             ViewData["ShowParam"] = showAll == "true" ? "false" : "true";
             ViewBag.PostCount = _database.Posts.Count();
             
-            var variable = Convert.ToBoolean(ViewData["ShowParam"]);
-
-            var categories = _database.Categories.ToList();
-            var allPosts = _database.Posts
+            var categories = await _database.Categories.OrderBy(c => c.Name).ToListAsync();
+            var allPosts =  await _database.Posts
                 .Include(p => p.Image)
                 .Include(p => p.Category)
                 .Include(p => p.Comments)
-                .ToList();
+                .ToListAsync();
             
             switch (sortOrder)
             {
@@ -94,37 +90,6 @@ namespace MovieBlog.Controllers
             else
             {
                 return View(new HomeIndexViewModel() {AllPosts = allPosts, Categories = categories});
-            }
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult AddImage() => View();
-
-        [HttpPost]
-        public async Task<IActionResult> AddImage(IFormFile image)
-        {
-            if (image != null)
-            {
-                var path = "/Files/" + image.FileName;
-
-                await using (var fileStream = new FileStream(_environment.WebRootPath + path, FileMode.Create))
-                {
-                    await image.CopyToAsync(fileStream);
-                }
-
-                await _database.Images.AddAsync(new Image {Name = image.FileName, Path = path});
-                await _database.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Index));
-            }
-            else
-            {
-                return View();
             }
         }
     }

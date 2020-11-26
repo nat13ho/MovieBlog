@@ -26,7 +26,8 @@ namespace MovieBlog
                     var userManager = services.GetRequiredService<UserManager<User>>();
                     var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     var context = services.GetRequiredService<ApplicationContext>();
-                    await SiteInitializer.InitializeAsync(userManager, rolesManager, context);
+                    var environment = services.GetRequiredService<IWebHostEnvironment>();
+                    await SiteInitializer.InitializeAsync(userManager, rolesManager, context, environment);
                 }
                 catch (Exception ex)
                 {

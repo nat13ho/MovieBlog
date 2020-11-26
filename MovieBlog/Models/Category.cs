@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MovieBlog.Models
@@ -5,7 +6,7 @@ namespace MovieBlog.Models
     public class Category
     {
         [Required]
-        public int Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
         [Required(ErrorMessage = "Введите название категории!")]
         public string Name { get; set; }

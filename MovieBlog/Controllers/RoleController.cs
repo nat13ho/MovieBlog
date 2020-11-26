@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MovieBlog.Models;
 using MovieBlog.ViewModels;
 
@@ -26,8 +27,8 @@ namespace MovieBlog.Controllers
         
         public IActionResult Index()
         {
-            var roles = _roleManager.Roles.ToList();
-            var categories = _database.Categories.ToList();
+            var roles = _roleManager.Roles.OrderBy(r => r.Name).ToList();
+            var categories = _database.Categories.OrderBy(c => c.Name).ToList();
             return View(new RoleIndexViewModel() {Roles = roles, Categories = categories});
         }
         
@@ -73,8 +74,8 @@ namespace MovieBlog.Controllers
         [HttpGet]
         public IActionResult GetUserList()
         {
-            var users = _userManager.Users.ToList();
-            var categories = _database.Categories.ToList();
+            var users = _userManager.Users.OrderBy(u => u.UserName).ToList();
+            var categories = _database.Categories.OrderBy(c => c.Name).ToList();
 
             return View(new UserListViewModel() {Users = users, Categories = categories});
         }
@@ -87,7 +88,7 @@ namespace MovieBlog.Controllers
             if (user != null)
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
-                var allRoles = _roleManager.Roles.ToList();
+                var allRoles = await _roleManager.Roles.OrderBy(r => r.Name).ToListAsync();
                 
                 var model = new ChangeRoleViewModel
                 {
@@ -111,7 +112,6 @@ namespace MovieBlog.Controllers
             if (user != null)
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
-                var allRoles = _roleManager.Roles.ToList();
                 var addedRoles = roles.Except(userRoles);
                 var removedRoles = userRoles.Except(roles);
  

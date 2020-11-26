@@ -15,7 +15,9 @@
             <node kind="database" qname="@">
               <node kind="schema" qname="@" />
             </node>
-            <node kind="database" qname="movieblogdb">
+            <node kind="database">
+              <name qname="movieblogdb" />
+              <name qname="movieblogdb2" />
               <node kind="schema" qname="dbo" />
             </node>
           </node>

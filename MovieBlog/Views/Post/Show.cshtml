@@ -9,7 +9,7 @@
 }
 
 @await Html.PartialAsync("_Navbar", Model.Categories)
-<section class="container banner" style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('@Url.Content(Model.Post.Image.Path)') no-repeat center top / cover">
+<section class="container banner" style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('@Url.Content(Model.Post.Image.GetSource())') no-repeat center top / cover">
     <div class="banner__content">
         <h1 class="banner__content-title">@Model.Post.Title</h1>
         <span class="banner__content-category">@Model.Post.Category.Name</span>
@@ -26,7 +26,7 @@
         @foreach (var comment in Model.PostComments)
         {
             <div class="post__comments-wrapper">
-                <img class="post__comments-user-icon" src="@comment.User.Image.Path" alt="User image">
+                <img class="post__comments-user-icon" src="@comment.User.Image.GetSource()" alt="User image">
                 <div class="post__comments-content">
                     <div class="post__comments-details">
                         <span class="post__comments-username">@comment.User.UserName</span>
@@ -82,9 +82,9 @@
         @if (User.Identity.IsAuthenticated)
         {
             <form class="post__comments-form" method="post" asp-controller="Comment" asp-action="Add">
-                <img class="post__comments-user-icon" src="@Model.User.Image.Path" alt="User image">
+                <img class="post__comments-user-icon" src="@Model.User.Image.GetSource()" alt="User image">
                 <input name="postId" value="@Model.Post.Id" type="hidden">
-                <textarea asp-for="Comment.Content" class="post__comments-input" placeholder="Оставить комментарий"></textarea>
+                <textarea asp-for="Comment.Content" class="post__comments-input" placeholder="Оставить комментарий" required></textarea>
                 <button type="submit">
                     <svg height="512" viewBox="0 0 465.882 465.882" width="512" xmlns="http://www.w3.org/2000/svg">
                         <path d="m465.882 0-465.882 262.059 148.887 55.143 229.643-215.29-174.674 235.65.142.053-.174-.053v128.321l83.495-97.41 105.77 39.175z"/>
