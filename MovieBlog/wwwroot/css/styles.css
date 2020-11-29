@@ -619,6 +619,10 @@ input[type="password"] {
     border: none;
 }
 
+.post__content {
+    width: 100%;
+}
+
 .post__content img {
     width: 100%;
     height: auto;

@@ -699,6 +699,7 @@
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/staticwebassets/MovieBlog.StaticWebAssets.xml
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.dll
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/MovieBlog.pdb
+/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/scopedcss/bundle/MovieBlog.styles.css
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/ChangePassword.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/Edit.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/Favorites.cshtml.g.cs
@@ -726,4 +727,3 @@
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/_ValidationScriptsPartial.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/_ViewImports.cshtml.g.cs
 /Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/Razor/_ViewStart.cshtml.g.cs
-/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/Debug/netcoreapp3.1/scopedcss/bundle/MovieBlog.styles.css

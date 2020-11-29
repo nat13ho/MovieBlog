@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="@localhost" uuid="bdc92dcb-f669-4b5f-b5d8-806baa6cd5be">
+    <data-source name="@localhost" uuid="5c89600c-5ce2-4c7c-9f61-2614c6c3b08a">
       <database-info product="Microsoft SQL Server" version="14.00.3048" jdbc-version="4.2" driver-name="Microsoft JDBC Driver 8.2 for SQL Server" driver-version="8.2.2.0" dbms="MSSQL" exact-version="14.0.3048" exact-driver-version="8.2">
         <extra-name-characters>$#@</extra-name-characters>
         <identifier-quote-string>&quot;</identifier-quote-string>
@@ -15,9 +15,7 @@
             <node kind="database" qname="@">
               <node kind="schema" qname="@" />
             </node>
-            <node kind="database">
-              <name qname="movieblogdb" />
-              <name qname="movieblogdb2" />
+            <node kind="database" qname="movieblogdb">
               <node kind="schema" qname="dbo" />
             </node>
           </node>

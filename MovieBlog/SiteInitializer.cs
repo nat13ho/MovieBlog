@@ -43,7 +43,8 @@ namespace MovieBlog
                     new Category { Name = "Триллер"},
                     new Category { Name = "Ужасы"},
                     new Category { Name = "Фантастика"},
-                    new Category { Name = "Фэнтези"}
+                    new Category { Name = "Фэнтези"},
+                    new Category { Name = "Другое"}
                 );
                 
                 await database.SaveChangesAsync();
