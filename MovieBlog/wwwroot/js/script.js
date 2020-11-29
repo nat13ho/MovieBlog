@@ -29,4 +29,12 @@ $(document).ready(function () {
     $('.navbar__burger').click(function () {
         $('.navbar__burger, .navbar__menu, .account__menu').toggleClass('active')
     })
+
+    // Comment user selector
+    $('.post__comments-wrapper').click(function () {
+        let userName = $(this).find('.post__comments-username').text();
+        let postCommentInput = $('.post__comments-input');
+
+        postCommentInput.val(userName + ', ');
+    })
 })

@@ -14,6 +14,7 @@
     <link rel="short icon" type="image/png" href="~/img/movieblog.png">
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/darkmode.js"></script>
+    <script src="~/js/fileInput.js"></script>
     <script src="https://cdn.tiny.cloud/1/36kkkhd93v5fbjle570kn4xedtutldzhous9nkjk0117rw5h/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
              tinymce.init({
@@ -52,7 +53,8 @@
             <label asp-for="Image" class="file__label">
                 <img src="~/img/image.svg" alt="Post image">
             </label>
-            <input asp-for="Image" type="file" accept="image/jpeg,image/png,image/gif">
+            <input asp-for="Image" type="file" class="file_input" accept="image/jpeg,image/png,image/gif">
+            <span class="file__name">Изображение не выбрано</span>
         </div>
         <div class="custom-form-group">
             <span>Жанр</span>

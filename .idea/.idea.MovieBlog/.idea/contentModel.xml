@@ -134,6 +134,7 @@
           </e>
           <e p="js" t="Include">
             <e p="darkmode.js" t="Include" />
+            <e p="fileInput.js" t="Include" />
             <e p="script.js" t="Include" />
             <e p="site.js" t="Include" />
           </e>

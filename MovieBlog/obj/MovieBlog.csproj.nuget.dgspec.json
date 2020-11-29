@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj": {}
+    "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj": {}
   },
   "projects": {
-    "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj": {
+    "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj",
+        "projectUniqueName": "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj",
         "projectName": "MovieBlog",
-        "projectPath": "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj",
+        "projectPath": "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/MovieBlog.csproj",
         "packagesPath": "/Users/natho/.nuget/packages/",
-        "outputPath": "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/",
+        "outputPath": "/Users/natho/Downloads/Учёба/Программирование/C#/Самоподготовка/Web/MovieBlog/MovieBlog/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -27,6 +27,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -38,7 +39,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Magick.NET-Q16-AnyCPU": {
+              "target": "Package",
+              "version": "[7.22.2.2, )"
+            },
             "MailKit": {
               "target": "Package",
               "version": "[2.9.0, )"
@@ -68,6 +74,10 @@
             "Microsoft.EntityFrameworkCore.Tools.DotNet": {
               "target": "Package",
               "version": "[2.0.3, )"
+            },
+            "TinyPNG": {
+              "target": "Package",
+              "version": "[3.3.3, )"
             }
           },
           "imports": [
@@ -88,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.403/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.100/RuntimeIdentifierGraph.json"
         }
       }
     }

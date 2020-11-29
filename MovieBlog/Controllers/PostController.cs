@@ -1,12 +1,14 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using ImageMagick;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieBlog.Models;
 using MovieBlog.ViewModels;
+using TinyPng;
 
 namespace MovieBlog.Controllers
 {
@@ -50,15 +52,10 @@ namespace MovieBlog.Controllers
                         var imageModel = new Image()
                         {
                             Name = fileName,
-                            Extension = extension
+                            Extension = extension,
+                            Data = await Image.GetCompressedData(model.Image)
                         };
-
-                        await using (var dataStream = new MemoryStream())
-                        {
-                            await model.Image.CopyToAsync(dataStream);
-                            imageModel.Data = dataStream.ToArray();
-                        }
-
+                        
                         await _database.Images.AddAsync(imageModel);
                         await _database.SaveChangesAsync();
                             
@@ -85,7 +82,7 @@ namespace MovieBlog.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            if (id != null)
+            if (!string.IsNullOrEmpty(id))
             {
                 var post = await _database.Posts
                     .Include(p => p.Category)
@@ -121,6 +118,7 @@ namespace MovieBlog.Controllers
                     .Include(p => p.Image)
                     .FirstOrDefaultAsync(p => p.Id == model.Id);
                 var postCategory = await _database.Categories.FirstOrDefaultAsync(c => c.Name == category);
+                var defaultPostImage = await _database.Images.FirstOrDefaultAsync(i => i.Name == "MovieBlogPostImg");
 
                 if (post != null && postCategory != null)
                 {
@@ -131,18 +129,18 @@ namespace MovieBlog.Controllers
                         var imageModel = new Image()
                         {
                             Name = fileName,
-                            Extension = extension
+                            Extension = extension,
+                            Data = await Image.GetCompressedData(model.Image)
                         };
-
-                        await using (var dataStream = new MemoryStream())
+                        
+                        if (post.Image != defaultPostImage)
                         {
-                            await model.Image.CopyToAsync(dataStream);
-                            imageModel.Data = dataStream.ToArray();
+                            _database.Images.Remove(post.Image);
                         }
-
+                        
+                        post.Image = imageModel;
                         await _database.Images.AddAsync(imageModel);
                         await _database.SaveChangesAsync();
-                        post.Image = imageModel;
                     }
 
                     post.Title = model.Title;
@@ -165,7 +163,7 @@ namespace MovieBlog.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
-            if (id != null)
+            if (!string.IsNullOrEmpty(id))
             {
                 var post = await _database.Posts.FirstOrDefaultAsync(p => p.Id == id);
 
@@ -203,7 +201,7 @@ namespace MovieBlog.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Show(string id)
         {
-            if (id != null)
+            if (!string.IsNullOrEmpty(id))
             {
                 var post = await _database.Posts
                     .Include(p => p.Image)
@@ -253,7 +251,7 @@ namespace MovieBlog.Controllers
         [HttpPost]
         public async Task<IActionResult> AddToFavorite(string id, string returnUrl)
         {
-            if (id != null)
+            if (!string.IsNullOrEmpty(id))
             {
                 var post = await _database.Posts.FirstOrDefaultAsync(p => p.Id == id);
                 var user = await _database.Users
@@ -279,7 +277,7 @@ namespace MovieBlog.Controllers
         [HttpPost]
         public async Task<IActionResult> RemoveFromFavorites(string id, string returnUrl)
         {
-            if (id != null)
+            if (!string.IsNullOrEmpty(id))
             {
                 var post = await _database.Posts.FirstOrDefaultAsync(p => p.Id == id);
                 var user = await _database.Users

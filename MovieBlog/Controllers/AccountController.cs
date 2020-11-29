@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using ImageMagick;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieBlog.Models;
 using MovieBlog.ViewModels;
+using TinyPng;
 
 namespace MovieBlog.Controllers
 {
@@ -357,14 +359,9 @@ namespace MovieBlog.Controllers
                     var imageModel = new Image()
                     {
                         Name = fileName,
-                        Extension = extension
+                        Extension = extension,
+                        Data = await Image.GetCompressedData(model.NewUserImage)
                     };
-
-                    await using (var dataStream = new MemoryStream())
-                    {
-                        await model.NewUserImage.CopyToAsync(dataStream);
-                        imageModel.Data = dataStream.ToArray();
-                    }
 
                     if (user.Image != defaultUserImage)
                     {

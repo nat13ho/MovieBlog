@@ -14,6 +14,7 @@
     <link rel="short icon" type="image/png" href="~/img/movieblog.png">
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/darkmode.js"></script>
+    <script src="~/js/fileInput.js"></script>
     <title>Редактирование аккаунта</title>
 </head>
 <body>
@@ -31,9 +32,9 @@
         <div class="register__window-form-content">
             <input asp-for="UserId" type="hidden">
             <label asp-for="NewUserImage">
-                <img src="@Model.UserImage.GetSource()" alt="User image">
+                <img src="@Model.UserImage.GetSource()" class="user__image" alt="User image">
             </label>
-            <input asp-for="NewUserImage" type="file" accept="image/jpeg,image/png,image/gif">
+            <input asp-for="NewUserImage" type="file" class="user__image-input" accept="image/jpeg,image/png,image/gif">
             <input asp-for="Username" value="@Model.Username" class="register__window-input" type="text" placeholder="Имя пользователя">
             <div class="edit__account-buttons">
                 <button class="register__window-button" type="submit">Сохранить</button>
